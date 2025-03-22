@@ -21,6 +21,13 @@ app.get('', function (req, res) {
   res.sendFile(index);
 });
 
+app.post('/ai', async function (req, res) {
+  const prompt = req.body.prompt;
+
+  const result = await model.generateContent(prompt);
+  res.send(result);
+});
+
 http.listen(port, function(){
   console.log('listening on *:' + port);
 });
